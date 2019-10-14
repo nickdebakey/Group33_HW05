@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Group33_HW05</string>
+    <string name="tv_newsTitle">News Title</string>
+    <string name="tv_newsAuthor">News Author</string>
+    <string name="tv_newsDate">News Date</string>
+    <string name="tv_title">News Title</string>
+    <string name="tv_author">Author</string>
+    <string name="tv_date">News Date</string>
 </resources>

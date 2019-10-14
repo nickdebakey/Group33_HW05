@@ -3,12 +3,15 @@ package com.example.group33_hw05;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -20,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,6 +33,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG_IMAGE = "source";
     ProgressBar progressBar;
     ListView lv_sources;
 
@@ -37,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Main Activity");
-
         progressBar = findViewById(R.id.progressBar);
         lv_sources = findViewById(R.id.lv_sources);
-
         progressBar.setVisibility(View.INVISIBLE);
 
         if (isConnectedOnline()) {
@@ -61,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class GetSources extends AsyncTask<String, Void, ArrayList<Source>> {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -72,17 +74,14 @@ public class MainActivity extends AppCompatActivity {
         protected ArrayList<Source> doInBackground(String... strings) {
             ArrayList<Source> sources = new ArrayList<>();
             HttpURLConnection connection = null;
-
             try {
                 URL url = new URL(strings[0]);
                 connection = (HttpURLConnection)url.openConnection();
                 connection.connect();
-
                 if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                     String json = IOUtils.toString(connection.getInputStream(), "UTF8");
                     JSONObject jsonRoot = new JSONObject(json);
                     JSONArray jsonSources = jsonRoot.getJSONArray("sources");
-
                     for (int i = 0; i < jsonSources.length(); i++) {
                         JSONObject jsonSource = jsonSources.getJSONObject(i);
                         Source source = new Source(jsonSource.getString("id"), jsonSource.getString("name"));
@@ -96,12 +95,11 @@ public class MainActivity extends AppCompatActivity {
                     connection.disconnect();
                 }
             }
-
             return sources;
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Source> sources) {
+        protected void onPostExecute(final ArrayList<Source> sources) {
             progressBar.setVisibility(View.INVISIBLE);
             List<String> list_sources = new ArrayList<>();
             String text;
@@ -111,6 +109,16 @@ public class MainActivity extends AppCompatActivity {
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, list_sources);
             lv_sources.setAdapter(adapter);
+            lv_sources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(MainActivity.this, NewsActivity.class);
+                    Bundle sendData = new Bundle();
+                    sendData.putSerializable("source", (Serializable) sources.get(i));
+                    intent.putExtra(TAG_IMAGE, sendData);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

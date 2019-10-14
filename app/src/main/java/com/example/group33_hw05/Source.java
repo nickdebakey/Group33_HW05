@@ -1,6 +1,8 @@
 package com.example.group33_hw05;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
     String id;
     String name;
 
@@ -15,10 +17,6 @@ public class Source {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
