@@ -1,9 +1,12 @@
 package com.example.group33_hw05;
-import android.view.View;
-import android.view.ViewGroup;
 
 import java.io.Serializable;
-import java.util.List;
+
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
 
 public class News implements Serializable {
     String author, title, url, urlToImage, publishedAt;

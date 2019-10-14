@@ -2,6 +2,12 @@ package com.example.group33_hw05;
 
 import java.io.Serializable;
 
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
+
 public class Source implements Serializable {
     String id;
     String name;

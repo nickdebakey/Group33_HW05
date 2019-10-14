@@ -12,6 +12,12 @@ import androidx.annotation.Nullable;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
+
 public class NewsAdapter extends ArrayAdapter<News> {
 
     public NewsAdapter(@NonNull Context context, int resource, @NonNull List<News> objects) {

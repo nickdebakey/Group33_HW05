@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
+
 public class WebViewActivity extends AppCompatActivity {
 
     WebView wv_article;

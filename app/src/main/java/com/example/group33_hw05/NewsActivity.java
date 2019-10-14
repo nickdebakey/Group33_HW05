@@ -25,6 +25,12 @@ import java.util.ArrayList;
 
 import static com.example.group33_hw05.MainActivity.TAG_IMAGE;
 
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
+
 public class NewsActivity extends AppCompatActivity {
 
     ProgressBar progressBar_news;

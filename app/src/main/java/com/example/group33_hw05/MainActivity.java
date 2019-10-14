@@ -31,6 +31,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+Homework 05
+Group33_HW05.zip
+Nick DeBakey & Lis Rizvanolli
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG_IMAGE = "source";
